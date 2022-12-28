@@ -29,13 +29,13 @@ vector<string> split(const string& s, char delim=' ') {
     return res;
 }
 
-struct raindeer {
+struct reindeer {
     int speed, time, rest;
-    raindeer(int s, int t, int r) : speed(s), time(t), rest(r) {}
+    reindeer(int s, int t, int r) : speed(s), time(t), rest(r) {}
 };
 
 
-ll get_distance(const raindeer& r, int time_limit) {
+ll get_distance(const reindeer& r, int time_limit) {
     ll full_cycle = r.rest + r.time;
     ll n = time_limit / full_cycle;
     ll rem = time_limit - n * full_cycle;
@@ -45,7 +45,7 @@ ll get_distance(const raindeer& r, int time_limit) {
 }
 int main() {
     string s;
-    vector<raindeer> a;
+    vector<reindeer> a;
     ll res = 0;
     const int time_limit = 2503;
     while (getline(cin, s)) {
@@ -61,12 +61,12 @@ int main() {
     cout << "Part 1 " << res << endl;
     vector<int> points(a.size(), 0);
     for (int second = 1; second < time_limit; ++second) {
-        vector<int> raindeer_dist(a.size());
-        transform(all(a), raindeer_dist.begin(), [&](auto r){return get_distance(r, second);});
+        vector<int> reindeer_dist(a.size());
+        transform(all(a), reindeer_dist.begin(), [&](auto r){return get_distance(r, second);});
        
-        int max_distance = *max_element(all(raindeer_dist));
+        int max_distance = *max_element(all(reindeer_dist));
         for (int i = 0; i < (int)points.size(); ++i) {
-            if (raindeer_dist[i] == max_distance) {
+            if (reindeer_dist[i] == max_distance) {
                 points[i]++;
             }
         }
